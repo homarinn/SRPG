@@ -22,24 +22,12 @@ public class UnitController : MonoBehaviour
 
     bool canControll = true;
 
-    public enum ACTION
-    {
-        ATTACK, // 攻撃
-        MAGIC, // 魔法
-        TALK, // 話す
-        ITEM, // アイテム
-        EXCHANGE, // 交換
-        WAIT, // 待機
-    }
-
     const string ATTACK_DISPLAY_NAME = "攻撃";
     const string MAGIC_DISPLAY_NAME = "魔法";
     const string TALK_DISPLAY_NAME = "話す";
     const string ITEM_DISPLAY_NAME = "道具";
     const string EXCHANGE_DISPLAY_NAME = "交換";
     const string WAIT_DISPLAY_NAME = "待機";
-
-    public Dictionary<ACTION, string> actionDisplayNames = new ();
 
     private void Awake()
     {
@@ -51,16 +39,6 @@ public class UnitController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private void Start()
-    {
-        actionDisplayNames[ACTION.ATTACK] = ATTACK_DISPLAY_NAME;
-        actionDisplayNames[ACTION.MAGIC] = MAGIC_DISPLAY_NAME;
-        actionDisplayNames[ACTION.TALK] = TALK_DISPLAY_NAME;
-        actionDisplayNames[ACTION.ITEM] = ITEM_DISPLAY_NAME;
-        actionDisplayNames[ACTION.EXCHANGE] = EXCHANGE_DISPLAY_NAME;
-        actionDisplayNames[ACTION.WAIT] = WAIT_DISPLAY_NAME;
     }
 
     public void OnSelectUnit(Unit unit)
@@ -205,34 +183,34 @@ public class UnitController : MonoBehaviour
 
     private void ShowSelectActionUI(Unit unit)
     {
-        List<ACTION> actions = new();
+        HashSet<Unit.ACTION> actions = new();
 
         if (CanTalk(unit))
         {
-            actions.Add(ACTION.TALK);
+            actions.Add(Unit.ACTION.TALK);
         }
 
         if (CanAttack(unit))
         {
-            actions.Add(ACTION.ATTACK);
+            actions.Add(Unit.ACTION.ATTACK);
         }
 
         if (CanMagic(unit))
         {
-            actions.Add(ACTION.MAGIC);
+            actions.Add(Unit.ACTION.MAGIC);
         }
 
-        actions.Add(ACTION.ITEM);
+        actions.Add(Unit.ACTION.ITEM);
 
         if (CanExchange(unit))
         {
-            actions.Add(ACTION.EXCHANGE);
+            actions.Add(Unit.ACTION.EXCHANGE);
         }
 
-        actions.Add(ACTION.WAIT);
+        actions.Add(Unit.ACTION.WAIT);
 
         // TODO: UIの表示
-        DoUnitAction(unit, ACTION.WAIT);
+        DoUnitAction(unit, Unit.ACTION.WAIT);
     }
 
     private bool CanTalk(Unit unit)
@@ -279,7 +257,7 @@ public class UnitController : MonoBehaviour
         return false;
     }
 
-    private void DoUnitAction(Unit unit, ACTION action)
+    private void DoUnitAction(Unit unit, Unit.ACTION action)
     {
         unit.IsActioned = true;
         unit.TurnEnd();

@@ -36,6 +36,16 @@ public abstract class Unit : MonoBehaviour
 
     public List<Unit> canTalkUnits = new ();
 
+    public enum ACTION
+    {
+        ATTACK, // 攻撃
+        MAGIC, // 魔法
+        TALK, // 話す
+        ITEM, // アイテム
+        EXCHANGE, // 交換
+        WAIT, // 待機
+    }
+
     private void Awake()
 	{
         InitializeParameters();

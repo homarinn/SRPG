@@ -369,6 +369,8 @@
 "Assets/Project/Scripts/Grid/GridManager.cs"
 "Assets/Project/Scripts/Grid/GridManager_AStar.cs"
 "Assets/Project/Scripts/Grid/RangeLayer.cs"
+"Assets/Project/Scripts/UI/ActionMenu.cs"
+"Assets/Project/Scripts/UI/ActionMenuButton.cs"
 "Assets/Project/Scripts/Unit/AllyUnit.cs"
 "Assets/Project/Scripts/Unit/EnemyUnit.cs"
 "Assets/Project/Scripts/Unit/NeutralUnit.cs"
